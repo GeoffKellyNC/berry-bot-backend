@@ -7,7 +7,7 @@ const { ChatClient } = require('@twurple/chat');
 const path = require('path')
 const axios = require('axios')
 
-const botConfigEP = process.env.BOT_CONFIG_BOT_ENDPOINT 
+const botConfigEP = 'https://62c5c1fc134fa108c25b8929.mockapi.io/botConfig'
 
 
 const getTarget = async () => {
