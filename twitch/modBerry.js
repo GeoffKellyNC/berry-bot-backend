@@ -112,7 +112,7 @@ const processMessage = async (user, message, chatClient, channel, bannedWords) =
             let userExists = await checkUser(user, pointsData)
             console.log(userExists)
 
-            chatClient.say(channel, `@${user} please do not used banned language!`)
+            chatClient.say(channel, `@${user} please do not use banned language!`)
 
             if(!userExists){
                 setUserPoints(user, 1)

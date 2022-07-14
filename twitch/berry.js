@@ -5,7 +5,7 @@ const { ChatClient } = require('@twurple/chat');
 const path = require('path')
 const axios = require('axios')
 
-const pointEndpoint = 'https://62c5c1fc134fa108c25b8929.mockapi.io/'
+const pointEndpoint = 'https://62c5c1fc134fa108c25b8929.mockapi.io/userPoints'
 const botConfigEP = 'https://62c5c1fc134fa108c25b8929.mockapi.io/botConfig'
 
 
