@@ -18,9 +18,16 @@ const getTarget = async () => {
 }
 
 const getBotConfig = async () => {
-    const configLocation = path.join(__dirname, 'bot-config.json')
-    const configData = JSON.parse(await fs.readFile(configLocation, 'utf-8'))
+    const getRes = await axios.get(botConfigEP)
+    const configData = getRes.data[0]
     return configData
+}
+
+const refreshConfig = async (data) => {
+    const getRes = await axios.get(botConfigEP)
+    const oldData = getRes.data[0]
+    const newData = {...oldData, ...data }
+    const postRes = await axios.patch(`${botConfigEP}/1`, newData)
 }
 
 const getPoints = async (user) => {
@@ -40,15 +47,13 @@ async function berry() {
     const configData = await getBotConfig()
     const clientId = configData.clientId
     const clientSecret = configData.clientSecret
-    const tokenLocation = path.join(__dirname, 'bot-config.json')
-    const tokenData = JSON.parse(await fs.readFile(tokenLocation, 'utf-8'))
     const authProvider = new RefreshingAuthProvider(
         {
             clientId,
             clientSecret,
-            onRefresh: async newTokenData => await fs.writeFile(tokenLocation, JSON.stringify({...tokenData, ...newTokenData, target: TARGET}, null, 4, 'UTF-8'))
+            onRefresh: async newTokenData => await refreshConfig(newTokenData)
         },
-        tokenData
+        configData
     );
 
 

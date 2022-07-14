@@ -1,25 +1,14 @@
 {
-    "tokenType": "",
+    "expiresIn": 15378,
+    "obtainmentTimestamp": 1657763395160,
+    "clientId": "nkg5cs42pv8r2pm7hebudred3zkzi4",
+    "clientSecret": "e8hblyqorttg2rs6n1q7tvkpdspqsr",
+    "accessToken": "kak49nzznvoxhhb3ual4eyay60ll8u",
+    "refreshToken": "1imn1xttjiotp93ejs8p2jv1b9eolz814jvwkmmatjoeunfps3",
+    "target": "xberrybot",
     "scope": [
         "channel:moderate",
         "chat:edit",
         "chat:read"
-    ],
-    "expiresIn": 15318,
-    "obtainmentTimestamp": 1657761696290,
-    "clientId": "",
-    "clientSecret": "",
-    "accessToken": "",
-    "refreshToken": "",
-    "commandConfig": {
-        "discordLink": "",
-        "voteStart": "",
-        "voteEnd": ""
-    },
-    "botState": true,
-    "testConfig": {
-        "testChannel": "",
-        "testMessage": ""
-    },
-    "target": "xberrybot"
+    ]
 }
