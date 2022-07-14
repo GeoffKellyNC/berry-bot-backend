@@ -12,7 +12,8 @@ const execute = async (message) => {
 
 
 router.post('/', async (req, res) => {
-    const { message } = req.body;
+    const message = req.body.message
+    console.log('postMessage request: ', req)
     console.log('B/E postMessage Var: Message: ', message) //! DEBUGGING
     execute(message)
     res.send('Message Sent');
