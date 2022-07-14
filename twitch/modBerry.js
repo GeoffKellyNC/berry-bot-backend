@@ -20,24 +20,32 @@ const getConfigData = async (type) => {
             console.log('Getting Banned Words')
             const res = await axios.get(modEp)
             const bannedWords = res.data[0].bannedWords
+            console.log('MOD FUNC / Banned Words: ', bannedWords)
             return bannedWords
         default:
             console.log('There was an error in getConfigData $modBerry.js')
     }
 }
 
+const getBotConfig = async () => {
+    const getRes = await axios.get(botConfigEP)
+    const configData = getRes.data[0]
+    return configData
+}
+
+const refreshConfig = async (data) => {
+    const getRes = await axios.get(botConfigEP)
+    const oldData = getRes.data[0]
+    const newData = {...oldData, ...data }
+    const postRes = await axios.patch(`${botConfigEP}/1`, newData)
+}
+
+
 const getTarget = async () => {
     console.log('Getting Target....')
     const res = await axios.get(botConfigEP)
     const target = res.data[0].target
     return target
-}
-
-const getBotConfig = async () => {
-    const configLocation = path.join(__dirname, 'bot-config.json')
-    const configData = JSON.parse(await fs.readFile(configLocation,
-        'utf-8'))
-    return configData
 }
 
 const getPointsData = async () => {
@@ -49,8 +57,8 @@ const getPointsData = async () => {
     }catch(err){
         console.log('Get Points Data Func: ', err)
     }
-
 }
+
 
 const setUserPoints = async (user, points) => {
     try {
@@ -96,11 +104,6 @@ const handlePunishment = async(user, points, chatClient, channel) => {
 
 const processMessage = async (user, message, chatClient, channel, bannedWords) => {
 
-
-    console.log(`
-    USER 🧍: ${user}  ➡ 
-    MESSAGE 💬: ${message} ➡`)
-
     try{
         if(bannedWords.includes(message) && !whiteList.includes(user)){
             let pointsData = await getPointsData()
@@ -134,15 +137,13 @@ async function modBerry (){
     const configData = await getBotConfig()
     const clientId = configData.clientId
     const clientSecret = configData.clientSecret
-    const tokenLocation = path.join(__dirname, 'bot-config.json')
-    const tokenData = JSON.parse(await fs.readFile(tokenLocation, 'utf-8'))
     const authProvider = new RefreshingAuthProvider(
         {
             clientId,
             clientSecret,
-            onRefresh: async newTokenData => await fs.writeFile(tokenLocation, JSON.stringify({...tokenData, ...newTokenData, target: TARGET}, null, 4, 'UTF-8'))
+            onRefresh: async newTokenData => await refreshConfig(newTokenData)
         },
-        tokenData
+        configData
     );
 
     const chatClient = new ChatClient({

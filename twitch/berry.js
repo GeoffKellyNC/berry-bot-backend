@@ -1,6 +1,5 @@
 require('dotenv').config()
 const { RefreshingAuthProvider } = require('@twurple/auth')
-const { promises: fs } = require('fs')
 const { ChatClient } = require('@twurple/chat');
 
 const path = require('path')
