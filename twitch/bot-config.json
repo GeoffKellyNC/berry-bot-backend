@@ -5,12 +5,12 @@
         "chat:edit",
         "chat:read"
     ],
-    "expiresIn": 13778,
-    "obtainmentTimestamp": 1657759209856,
-    "clientId": "",
-    "clientSecret": "",
-    "accessToken": "",
-    "refreshToken": "",
+    "expiresIn": 15318,
+    "obtainmentTimestamp": 1657761696290,
+    "clientId": "nkg5cs42pv8r2pm7hebudred3zkzi4",
+    "clientSecret": "e8hblyqorttg2rs6n1q7tvkpdspqsr",
+    "accessToken": "axfji6g8cshiqs9sxakgddkzhtzxe4",
+    "refreshToken": "1imn1xttjiotp93ejs8p2jv1b9eolz814jvwkmmatjoeunfps3",
     "commandConfig": {
         "discordLink": "",
         "voteStart": "",
@@ -21,5 +21,5 @@
         "testChannel": "",
         "testMessage": ""
     },
-    "target": "bigpuffer"
+    "target": "xberrybot"
 }
