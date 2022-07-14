@@ -9,10 +9,11 @@ const { whiteList}  = require('../data/moderation/whitelist')
 
 
 // --- End Points ---//
-const pointEndpoint = 'https://62c5c1fc134fa108c25b8929.mockapi.io/userPoints'
-const modEp = 'https://62c5c1fc134fa108c25b8929.mockapi.io/moderation'
+const pointEndpoint = process.env.USER_POINTS_ENDPOINT
+const modEp = process.env.BOT_CONFIG_MOD_ENDPOINT
 
-const botConfigEP = 'https://62c5c1fc134fa108c25b8929.mockapi.io/botConfig'
+const botConfigEP = process.env.BOT_CONFIG_BOT_ENDPOINT
+
 
 
 
