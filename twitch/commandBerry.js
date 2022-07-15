@@ -24,7 +24,7 @@ const getBotConfig = async () => {
 }
 
 
-const connect = async () => {
+const chatBerry = async (message) => {
     const TARGET = await getTarget()
     const configData = await getBotConfig()
     const clientId = configData.clientId
@@ -44,18 +44,19 @@ const connect = async () => {
         channels: [TARGET]
     })
     await chatClient.connect()
+    console.log('Custom Message Connected....')
 
-    return chatClient
-}
+    await chatClient.onRegister(() => {
+         chatClient.say(TARGET, message)
+    })
 
-
-async function chatBerry(message){
-    const chatClient = await connect()
-    const target = await getTarget()
-
-    await chatClient.say(target, message)
-    await chatClient.quit()
-
+    setTimeout(() => {
+        chatClient.quit()
+    }, 2000)
+    
+    await chatClient.onDisconnect(() => {
+        console.log('Disconnected....')
+    })
 }
 
 
